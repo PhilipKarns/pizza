@@ -1,8 +1,40 @@
- <img src="../public/assets/img/pizza.png" alt="Pizza">
+ <img src="../../public/assets/img/pizza.png" alt="Pizza">
 <h1>What kind of pizza do you want?</h1>
 
- 
-     
+<h2>Pizzas available to eat</h2>
+{{#each pizzas}}
+	{{#unless this.devoured}}
+		{{this.pizza_name}}
+
+        <form action="/{{this.id}}?_method=PUT" method="POST">
+          <input type="hidden" name="devoured" value="true">
+          <button type="submit">Devour It!</button>
+        </form>
+
+    {{/unless}}
+{{/each}}
+
+<h2>Pizzas that have already been eaten</h2>
+	{{#each pizzas}}
+		{{#if this.devoured}}
+			{{this.pizza_name}}
+		{{/if}}
+
+	{{/each}}
+
+<h2>Add a Pizza</h2>
+<form class="create-update-form" action="/" method="POST">
+
+  <div class="form-group">
+    <label for="pi">Pizza Name:</label>
+    <input type="text" id="pi" name="pizza_name">
+  </div>
+
+  <form>
+  	<input type="hidden" name="devoured" value="0">
+	<button type="submit">Add Pizza</button>
+</form>
+
 
      {{!--    * Setup the `index.handlebars` to have the template that Handlebars can render onto. --}}
 
