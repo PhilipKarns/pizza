@@ -1,0 +1,32 @@
+h1 {
+	color: blue;
+	text-align: center;
+}
+
+ul {
+	list-style: none;
+}
+
+.full-width {
+    width: 100%;
+    margin: 0 auto;
+    overflow: auto;
+    text-align: center;
+    
+}
+
+.half-width {
+    width: 50%;
+    float: left;
+    text-align: center;     
+}
+
+img {
+	text-align: center;
+	display: inline-block;
+}
+
+button {
+	border-radius: 50px;
+	
+}

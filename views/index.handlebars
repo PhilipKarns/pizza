@@ -1,39 +1,56 @@
- <img src="../../public/assets/img/pizza.png" alt="Pizza">
+ <div class="full-width">
+ 	<img src="/assets/img/pizza.png" alt="Pizza">
+ </div>
+
 <h1>What kind of pizza do you want?</h1>
 
-<h2>Pizzas available to eat</h2>
-{{#each pizzas}}
-	{{#unless this.devoured}}
-		{{this.pizza_name}}
+<div class="full-width">
+	<div class="half-width">
+		<h2>Pizzas available to eat</h2>
+		<ul>
+			{{#each pizzas}}
+				{{#unless this.devoured}}
+					<li>
+						{{this.pizza_name}}
 
-        <form action="/{{this.id}}?_method=PUT" method="POST">
-          <input type="hidden" name="devoured" value="true">
-          <button type="submit">Devour It!</button>
-        </form>
+				        <form action="/{{this.id}}?_method=PUT" method="POST">
+				          <input type="hidden" name="devoured" value="true">
+				          <button type="submit">Devour It!</button>
+				        </form>
+				    </li>
+			    {{/unless}}
+			{{/each}}
+		</ul>
+	</div>
 
-    {{/unless}}
-{{/each}}
+	<div class="half-width">
+		<h2>Pizzas that have already been eaten</h2>
+		<ul>
+			{{#each pizzas}}
+				{{#if this.devoured}}
+					<li>
+						{{this.pizza_name}}
+					</li>
+				{{/if}}
+			{{/each}}
+		</ul>
+	</div>
+</div>
 
-<h2>Pizzas that have already been eaten</h2>
-	{{#each pizzas}}
-		{{#if this.devoured}}
-			{{this.pizza_name}}
-		{{/if}}
+<div class="full-width">
+	<h2>Add a Pizza</h2>
+	<form class="create-update-form" action="/" method="POST">
 
-	{{/each}}
+	  <div class="form-group">
+	    <label for="pi">Pizza Name:</label>
+	    <input type="text" id="pi" name="pizza_name">
+	  </div>
 
-<h2>Add a Pizza</h2>
-<form class="create-update-form" action="/" method="POST">
-
-  <div class="form-group">
-    <label for="pi">Pizza Name:</label>
-    <input type="text" id="pi" name="pizza_name">
-  </div>
-
-  <form>
-  	<input type="hidden" name="devoured" value="0">
-	<button type="submit">Add Pizza</button>
-</form>
+	  <form>
+	  	<input type="hidden" name="devoured" value="0">
+		<button type="submit">Add Pizza</button>
+	</form>
+</div>
 
 
      {{!--    * Setup the `index.handlebars` to have the template that Handlebars can render onto. --}}
